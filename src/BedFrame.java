@@ -17,7 +17,7 @@ class BedFrame extends StoreItem {
      * @param color String
      * @param assemblyRequired (boolean)
      */
-    public BedFrame(String name, double price, int quantity, String size, String returnPolicy, String material, String color, boolean assemblyRequired\) {
+    public BedFrame(String name, double price, int quantity, String size, String returnPolicy, String material, String color, boolean assemblyRequired) {
         super(name, price, quantity, size, returnPolicy, material);
         this.color = color;
         this.assemblyRequired = assemblyRequired;
