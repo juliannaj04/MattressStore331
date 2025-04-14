@@ -1,11 +1,13 @@
 /**
  * CSC 331
- * @author Julianna Johnston, Danny Soza, Caleb Joines
+ * @author Julianna Johnston, Danny Soza, Caleb Joines,
  * Due Date: 05/21/25
  * Purpose:
  */
 
 import java.util.Random;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Store Item superclass
@@ -20,6 +22,15 @@ public abstract class StoreItem {
     private String returnPolicy;
     private String material;
     private String SKU;
+    public static List<String> skuList = new ArrayList<>();
+    private static final char[] skuChars = {
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+            'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S',
+            'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+    };
+
+
 
     /**
      * Constructor with 6 attributes as parameters
@@ -152,17 +163,22 @@ public abstract class StoreItem {
      * Generates random 6 alphanumeric String
      * @return String SKU
      */
-    private static String generateSKU() {
-        char[] skuChars = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T',
-                'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-
-        int skuLength = 6;
+    public static String generateSKU() {
         Random random = new Random();
+        int skuLength = 6;
 
-        char[] SKU = new char[skuLength];
-        for (int i = 0; i < skuLength; i++) {
-            SKU[i] = skuChars[random.nextInt(skuChars.length)];
+        while (true) {
+            char[] skuCharsGenerated = new char[skuLength];
+            for (int i = 0; i < skuLength; i++) {
+                skuCharsGenerated[i] = skuChars[random.nextInt(skuChars.length)];
+            }
+
+            String newSKU = new String(skuCharsGenerated);
+
+            if (!skuList.contains(newSKU)) {
+                skuList.add(newSKU);
+                return newSKU;
+            }
         }
-        return new String(SKU);
     }
 }
